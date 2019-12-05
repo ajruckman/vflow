@@ -166,8 +166,9 @@ func (d *Decoder) decodeSet(mem MemCache, msg *Message) error {
 		if !ok {
 			select {
 			case rpcChan <- RPCRequest{
-				ID: setHeader.SetID,
-				IP: d.raddr,
+				ID:    setHeader.SetID,
+				IP:    d.raddr,
+				SrcID: msg.Header.DomainID,
 			}:
 			default:
 			}
